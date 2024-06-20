@@ -94,6 +94,7 @@
       const response = await fetch(`http://localhost:4000/pull`);
       pull_data = await response.json();
       show_pull_data = true;
+      console.log(pull_data)
     } catch (error) {
       console.error("请求失败: ", error);
     }
@@ -120,7 +121,7 @@
       <span>当前的task id 值是 {task_id}</span>
     </p>
 
-    <pre><code>当前发送的数据是 {@html demand_data}</code></pre>
+    <pre><code>当前发送的数据是 {demand_data}</code></pre>
   {/if}
 </div>
 
@@ -138,7 +139,7 @@
 <div>
   <button on:click={handleReportGet}>{reportButton}</button>
   {#if show_report_data}
-    <pre><code
+    <pre><code class="content-text"
         >env server 对mas发送过来的数据处理完成之后，返回的报告是 {@html JSON.stringify(
           report_data,
           null,
@@ -152,5 +153,16 @@
 <style>
   button {
     margin: 0.5rem;
+  }
+
+  div {
+    width:800px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .content-text {
+    white-space: pre-wrap;
   }
 </style>
